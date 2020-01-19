@@ -11,11 +11,6 @@ const actionGames = [
                 platform: {
                     name: "Xbox One"
                 }
-            },
-            {
-                platform: {
-                    name: "PlayStation 4"
-                }
             }
         ],
         released: "2013-09-17",
