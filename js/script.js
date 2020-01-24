@@ -17,7 +17,6 @@ for (i = 0; i < actionGames.length; i++) {
     <h4> + ${actionGames[i].name} + </h4></div>
     <div class="rating">${actionGames[i].rating}</div>
     <div class="released">${actionGames[i].released}</div>
-    <div class="released">${actionGames[i].released}</div>
         </div>
     </div>
     `;
