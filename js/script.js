@@ -1,35 +1,53 @@
 const container = document.querySelector(".container");
-
 let newHTML = "";
 
 for (let i = 0; i < actionGames.length; i++) {
-  let ratingValue = "Not rated";
 
-  if (actionGames[i].rating) {
-    ratingValue = actionGames[i].rating;
-  }
+    let ratingValue = "Not rated";
 
-  const GENRES = actionGames[i].genres;
-  const genreHTML = makeGenres(GENRES)
+    if (actionGames[i].rating) {
+        ratingValue = actionGames[i].rating;
+    }
 
-  const details = `<div class="card">
+    const genres = actionGames[i].genres;
+    const genresHTML = makeGenres(genres);
+
+    const platforms = actionGames[i].platforms;
+    const platformsHTML = makePlatforms(platforms);
+
+    const details = `<div class="card">
                         <div class="image" style="background-image: url(${actionGames[i].background_image});"></div>
                         <div class="details">
                             <h4 class="name">${actionGames[i].name}</h4>
                             <div class="rating">${ratingValue}</div>
-                            Genre: ${genreHTML}
+                            ${genresHTML}
+                            <div class="platforms">${platformsHTML}</div>
                         </div>
                     </div>`;
-  newHTML += details;
-}
 
-
-function makeGenres(genreArray) {
-  let genreHTML = "";
-  for (let i = 0; i < genreArray.length; i++) {
-    genreHTML += `<a class=""genre>${genreArray[i].name} </a>`;
-   return genreHTML;
-  }
+    newHTML += details;
 }
 
 container.innerHTML = newHTML;
+
+function makeGenres(genreArray) {
+
+    let genreHTML = "";
+
+    for (let i = 0; i < genreArray.length; i++) {
+        genreHTML += `<a class="genre">${genreArray[i].name}</a>`;
+    }
+
+    return genreHTML;
+}
+
+function makePlatforms(platformsArray) {
+
+    let platformsHTML = "";
+
+    for (let i = 0; i < platformsArray.length; i++) {
+        platformsHTML += `<span>${platformsArray[i].platform.name}</span>`;
+    }
+
+    return platformsHTML;
+}
