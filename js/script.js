@@ -1,32 +1,35 @@
-const CONTAINER = document.querySelector(".container");
-console.dir(CONTAINER);
+const container = document.querySelector(".container");
 
-let newHtml = "";
+let newHTML = "";
 
-const NAME = "<h4>" + actionGames;
+for (let i = 0; i < actionGames.length; i++) {
+  let ratingValue = "Not rated";
 
-for (i = 0; i < actionGames.length; i++) {
-  /*   var name = "<h4>" + actionGames[i].name + "</h4>"; //ES5
-    console.log(name); */
+  if (actionGames[i].rating) {
+    ratingValue = actionGames[i].rating;
+  }
 
-  const NAME = `<h4> + ${actionGames[i].name} + </h4>`; //ES6
+  const GENRES = actionGames[i].genres;
+  const genreHTML = makeGenres(GENRES)
 
-  const DETAILS = `<div class ="card">
-    <div class="image" style="background-image: url(${actionGames[i].background_image});"></div>
-    <div class="details">
-    <h4> + ${actionGames[i].name} + </h4></div>
-    <div class="rating">${actionGames[i].rating}</div>
-    <div class="released">${actionGames[i].released}</div>
-        </div>
-    </div>
-    `;
-
-  newHtml += DETAILS;
+  const details = `<div class="card">
+                        <div class="image" style="background-image: url(${actionGames[i].background_image});"></div>
+                        <div class="details">
+                            <h4 class="name">${actionGames[i].name}</h4>
+                            <div class="rating">${ratingValue}</div>
+                            Genre: ${genreHTML}
+                        </div>
+                    </div>`;
+  newHTML += details;
 }
 
-CONTAINER.innerHTML = newHtml;
-console.log(newHtml);
 
-/*   console.log("actionGames:", actionGames[i].name);
-  console.log("actionGames:", actionGames[i].released);
-  console.log("actionGames:", actionGames[i].rating); */
+function makeGenres(genreArray) {
+  let genreHTML = "";
+  for (let i = 0; i < genreArray.length; i++) {
+    genreHTML += `<a class=""genre>${genreArray[i].name} </a>`;
+   return genreHTML;
+  }
+}
+
+container.innerHTML = newHTML;
